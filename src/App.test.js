@@ -1,9 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import App, { Search, Table } from './App';
+import renderer from 'react-test-renderer';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('Table', () => {
+  const props = {
+    list: [
+      { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
+      { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
+    ],
+  };
+  it('отрисовывает без ошибки', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Table {...props} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+  it('shows two items in list', () => {
+    const element = shallow(
+      <Table {...props} />
+    );
+    expect(element.find('.table-row').length).toBe(2);
+  });
+  test('есть корректный снимок', () => {
+    const component = renderer.create(
+      <Table {...props} />
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
 });

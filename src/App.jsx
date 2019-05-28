@@ -1,18 +1,9 @@
-import React, { Component, Fragment } from "react";
-
-import Header from './components/header/header'
-import Footer from './components/footer/footer'
-
-
-const App =({ children }) => {
- 
+import React, { Component } from 'react'
+import List from './components/List/List'
+export default class App extends Component {
+  render() {
     return (
-      <Fragment>
-        <Header />
-          {children}
-        <Footer />
-      </Fragment>
-    );
+      <div class="container"><List /></div>
+    )
+  }
 }
-
-export default App;
