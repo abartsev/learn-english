@@ -1,0 +1,8 @@
+.alphabet{
+    display: flex;
+    flex-wrap: wrap;
+}
+.alphabet_item{
+    width: 25%;
+    padding: 0 .5rem;
+}
